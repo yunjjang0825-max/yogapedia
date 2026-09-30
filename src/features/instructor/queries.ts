@@ -1,0 +1,2 @@
+import { requireRole } from "@/lib/auth/roles";import { createClient } from "@/lib/supabase/server";
+export async function getInstructorSession(sessionId:string){await requireRole(["instructor","admin"]);const db=await createClient();const {data:session}=await db.from("sessions").select("id,title,starts_at,program_id").eq("id",sessionId).single();if(!session)return null;const {data:enrollments}=await db.from("enrollments").select("id,participant_id,operational_notes,status").eq("program_id",session.program_id);return{...session,participants:enrollments??[]};}

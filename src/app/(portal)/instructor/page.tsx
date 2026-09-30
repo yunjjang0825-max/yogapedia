@@ -1,0 +1,1 @@
+import { requireRole } from "@/lib/auth/roles";export default async function InstructorPage(){await requireRole(["instructor","admin"]);return <main className="portal-page"><p className="eyebrow">강사 운영</p><h1>오늘의 수업</h1><p>배정된 수업이 이곳에 표시됩니다.</p></main>}

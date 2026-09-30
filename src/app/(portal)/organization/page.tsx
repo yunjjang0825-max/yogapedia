@@ -1,0 +1,1 @@
+import{requireRole}from"@/lib/auth/roles";export default async function OrganizationPage(){await requireRole(["organization_manager","admin"]);return <main className="portal-page"><p className="eyebrow">기관 운영</p><h1>부산 파일럿 현황</h1><p>프로그램을 선택하면 모집, 출석, 완료와 사전후 변화를 확인할 수 있습니다.</p></main>}

@@ -1,0 +1,1 @@
+import{expect,it}from"vitest";import{buildAggregateReportData}from"./report-data";it("contains only approved aggregate fields",()=>{const data=buildAggregateReportData("파일럿",{enrollmentCount:10,completionRate:.8,attendanceRate:.9,pairedChange:1});expect(Object.keys(data)).toEqual(["programTitle","metrics"]);expect(JSON.stringify(data)).not.toMatch(/name|email|note|response/i);});
