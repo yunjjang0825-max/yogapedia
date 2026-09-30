@@ -1,0 +1,2 @@
+import { CheckInForm } from "@/components/participant/check-in-form";
+export default async function AssessmentPage({params,searchParams}:{params:Promise<{kind:string}>;searchParams:Promise<{enrollment?:string}>}){const {kind}=await params; const {enrollment}=await searchParams;if(!enrollment||!["pre","periodic","post"].includes(kind))return <main className="portal-page"><p>평가 정보를 확인할 수 없습니다.</p></main>;return <main className="portal-page"><h1>움직임 체크인</h1><CheckInForm enrollmentId={enrollment} kind={kind as "pre"|"periodic"|"post"}/></main>}

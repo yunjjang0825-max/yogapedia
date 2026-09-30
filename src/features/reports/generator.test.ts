@@ -1,0 +1,2 @@
+import{describe,expect,it,vi}from"vitest";import{generateReportDraft}from"./generator";
+describe("report generation",()=>{it("uses deterministic copy when provider fails",async()=>{const data={programTitle:"부산 파일럿",metrics:{enrollmentCount:10,completionRate:.8,attendanceRate:.9,pairedChange:1.2}};const result=await generateReportDraft(data,vi.fn().mockRejectedValue(new Error("down")));expect(result.source).toBe("deterministic_fallback");expect(result.text).toContain("80%");});});

@@ -1,0 +1,2 @@
+import Link from "next/link"; import { getParticipantHome } from "@/features/participant/queries";
+export default async function ParticipantPage(){const enrollments=await getParticipantHome(); return <main className="portal-page"><p className="eyebrow">나의 클래스박스</p><h1>오늘의 움직임</h1>{enrollments.length===0?<p>현재 참여 중인 프로그램이 없습니다.</p>:enrollments.map(e=><section key={e.id}><h2>참여 상태: {e.status}</h2><Link href={`/participant/assessment/periodic?enrollment=${e.id}`}>오늘 체크인</Link> · <Link href={`/participant/practice?enrollment=${e.id}`}>홈 연습 기록</Link></section>)}</main>}

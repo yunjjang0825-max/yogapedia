@@ -1,0 +1,2 @@
+import { notFound } from "next/navigation";import { AttendanceList } from "@/components/instructor/attendance-list";import { getInstructorSession } from "@/features/instructor/queries";
+export default async function SessionPage({params}:{params:Promise<{sessionId:string}>}){const{sessionId}=await params;const session=await getInstructorSession(sessionId);if(!session)notFound();return <main className="portal-page"><p className="eyebrow">수업 운영</p><h1>{session.title}</h1><AttendanceList sessionId={session.id} participants={session.participants}/></main>}

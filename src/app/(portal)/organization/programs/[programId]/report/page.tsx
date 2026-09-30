@@ -1,0 +1,2 @@
+import{notFound}from"next/navigation";import{getOrCreateOrganizationReport}from"@/features/reports/queries";
+export default async function ReportPage({params}:{params:Promise<{programId:string}>}){const{programId}=await params;const report=await getOrCreateOrganizationReport(programId);if(!report)notFound();return <main className="portal-page"><p className="eyebrow">기관 결과 보고서</p><h1>운영 관찰 요약</h1><p>{report.text}</p></main>}

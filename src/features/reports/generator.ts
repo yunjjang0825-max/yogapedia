@@ -1,0 +1,3 @@
+import type{AggregateReportData}from"./report-data";type Provider=(data:AggregateReportData)=>Promise<string>;
+function fallback(data:AggregateReportData){const m=data.metrics;return`${data.programTitle}에는 ${m.enrollmentCount}명이 참여했습니다. 완료율은 ${Math.round(m.completionRate*100)}%, 출석률은 ${Math.round(m.attendanceRate*100)}%입니다. 이 결과는 웰니스 프로그램 운영 관찰이며 의료적 효과를 의미하지 않습니다.`;}
+export async function generateReportDraft(data:AggregateReportData,provider?:Provider){if(provider)try{return{text:await provider(data),source:"provider" as const};}catch{}return{text:fallback(data),source:"deterministic_fallback" as const};}
